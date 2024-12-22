@@ -1,0 +1,40 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8010:8010"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DATABASE_URL=mysql://root@db/aviasales_db
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=aviasales_db
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./q_v2.sql:/docker-entrypoint-initdb.d/q_v2.sql
+
+volumes:
+  db_data:
