@@ -148,14 +148,15 @@ def return_ticket(db: Session, ticket_id: int):
     return result[0]
 
 
-def book_tickets(db: Session, client_id: int, flight_id: int, serve_stat_id: int, ticket_status_id: int, ticket_count: int):
+def book_tickets(db: Session, client_id: int, flight_id: int, ticket_price: int, serve_stat_id: int, ticket_count: int):
     result = db.execute(
-        text('CALL book_tickets_procedure(:client_id, :flight_id, :serve_stat_id, :ticket_status_id, :ticket_count)'),
+        text('select book_tickets(:client_id, :flight_id, :ticket_price, :serve_stat_id, :ticket_status_id, :ticket_count)'),
         {
             "client_id": client_id,
             "flight_id": flight_id,
+            "ticket_price": ticket_price,
             "serve_stat_id": serve_stat_id,
-            "ticket_status_id": ticket_status_id,
+            "ticket_status_id": 1,
             "ticket_count": ticket_count,
         },
     ).fetchone()

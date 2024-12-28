@@ -85,7 +85,6 @@ ALTER TABLE Flight ADD CONSTRAINT FKFlight563963 FOREIGN KEY (AirportID_airport_
 ALTER TABLE Flight ADD CONSTRAINT FKFlight563964 FOREIGN KEY (AirportID_airport_dest) REFERENCES Airport (ID_airport);
 ALTER TABLE Ticket ADD CONSTRAINT FKTicket773959 FOREIGN KEY (ClientID_client) REFERENCES Client (ID_client);
 
--- Insert Clients (8 entries)
 INSERT INTO Client (First_name, Surname, Last_name, Email, Passwords, Login) VALUES
 ('Андрей', 'Соколов', 'Михайлович', 'andrey.soko@mail.ru', 'Ab12_cd3', 'andrsoko'),
 ('Галина', 'Павлова', NULL, 'galina.pav@mail.ru', 'Qw90_asd', 'galpav'),
@@ -96,64 +95,57 @@ INSERT INTO Client (First_name, Surname, Last_name, Email, Passwords, Login) VAL
 ('Жанна', 'Фролов', NULL, 'zhan.fro@mail.ru', 'Mn_bv321', 'zhanfro'),
 ('Иван', 'Гаврилов', 'Андреевич', 'ivan.gav@mail.ru', 'Hg_f2345', 'ivangav');
 
--- Insert Airlines (5 entries)
 INSERT INTO Airline (Airline_name) VALUES
-('SkyFly'),
-('Аэровис'),
-('NordStar'),
-('SunWings'),
-('Air Rus');
+('Аэрофлот'),
+('Россия'),
+('Аврора'),
+('Сибирь'),
+('Победа');
 
--- Insert Cities (5 entries)
 INSERT INTO City (City_name) VALUES
 ('Москва'),
 ('Сочи'),
-('Омск'),
-('Санкт-Петербург'),
-('Уфа');
+('Новосибирск'),
+('Екатеринбург'),
+('Казань');
 
--- Insert Stat (5 entries)
 INSERT INTO Stat (Status_name) VALUES
 ('куплен'),
 ('забронирован'),
 ('возвращён');
 
--- Insert Serve_stat (5 entries)
 INSERT INTO Serve_stat (Serve_name) VALUES
 ('бизнес'),
 ('эконом'),
 ('1-класс');
 
-
--- Insert Planes (25 entries)
 INSERT INTO Plane (Model_plane, Capacity, AirlineID_airline) VALUES
-('TU-134', 180, 1),
+('Boeing 800', 180, 1),
+('Boeing 737 MAX', 200, 1),
+('Boeing 757', 239, 1),
 ('Boeing 767', 300, 1),
-('Airbus A320', 156, 1),
-('Airbus A321', 220, 1),
-('Boeing 737', 200, 1),
-('Суперджет 100', 98, 2),
-('Ил-96-300', 262, 2),
-('Bombardier CRJ200', 50, 2),
-('Airbus A220', 140, 2),
-('Embraer E190', 100, 2),
-('Boeing 777', 400, 3),
-('Airbus A350', 315, 3),
-('Мс-21', 211, 3),
-('Ан-148', 80, 3),
-('Ил-62М', 195, 3),
-('Boeing 787', 296, 4),
-('Boeing 737 MAX', 210, 4),
-('Airbus A330', 277, 4),
-('Ил-76', 167, 4),
-('Су-100', 120, 4),
+('Boeing 787 Dreamliner', 296, 1),
+('Airbus A319', 156, 2),
+('Airbus A320neo', 180, 2),
+('Airbus A321', 220, 2),
+('Airbus A330', 277, 2),
+('Airbus A350', 315, 2),
+('Airbus A380', 700, 3),
+('Airbus Beluga', 121, 3),
+('Boeing 747', 467, 3),
+('Concorde', 100, 3),
+('McDonnell Douglas', 270, 3),
+('Boeing 737 MAX 9', 220, 4),
+('Boeing 777X', 426, 4),
+('Superjet 100', 98, 4),
+('Ил-96', 262, 4),
+('Ан-124 Руслан', 88, 4),
+('Ту-154М', 180, 5),
 ('Ту-204', 210, 5),
-('Ан-124', 88, 5),
-('Cessna 208', 14, 5),
-('Boeing 747', 467, 5),
-('Airbus A380', 700, 5);
+('Ил-62', 195, 5),
+('Ил-76', 167, 5),
+('Ан-148', 80, 5);
 
--- Insert Airports (25 entries)
 INSERT INTO Airport (Airport_name, CityID_city) VALUES
 ('Шереметьево', 1),
 ('Домодедово', 1),
@@ -181,7 +173,6 @@ INSERT INTO Airport (Airport_name, CityID_city) VALUES
 ('Юдино', 5),
 ('Чистополь', 5);
 
--- Insert Representatives (25 entries)
 INSERT INTO Representative (First_name, Surname, Last_name, Passwords, AirlineID_airline) VALUES
 ('Павел', 'Иванов', 'Сергеевич', 'pass111', 1),
 ('Ирина', 'Петрова', 'Андреевна', 'pass222', 1),
@@ -209,7 +200,6 @@ INSERT INTO Representative (First_name, Surname, Last_name, Passwords, AirlineID
 ('Валентина', 'Чернова', 'Дмитриевна', 'pwd4567', 5),
 ('Олег', 'Кравцов', 'Викторович', 'pwd5678', 5);
 
--- Insert Flights (25 entries)
 INSERT INTO Flight (AirportID_airport_from, AirportID_airport_dest, PlaneID_plane, Departure_date, Time_the_way, Seats_availiable) VALUES
 (1, 5, 3, '2024-03-10', '02:30:00', 150),
 (7, 6, 3, '2024-07-11', '04:10:00', 110),
@@ -237,33 +227,33 @@ INSERT INTO Flight (AirportID_airport_from, AirportID_airport_dest, PlaneID_plan
 (22, 20, 4, '2024-11-18', '06:10:00', 160),
 (16, 22, 4, '2024-12-20', '03:40:00', 200);
 
--- Insert Tickets (25 entries)
 INSERT INTO Ticket (Number_place, Ticket_price, ClientID_client, Serve_statID_serve_stat, StatID_Stat, FlightID_flight) VALUES
 (10, 4900, 1, 1, 1, 1),
 (25, 5300, 2, 2, 2, 1),
 (50, 5700, 3, 3, 3, 1),
 (60, 6000, 4, 1, 1, 1),
-(70, 6500, 5, 2, 2, 1),
-(15, 5200, 6, 1, 3, 2),
+(70, 6500, 5, 2, 1, 1),
+(15, 5200, 6, 1, 1, 2),
 (18, 5600, 7, 2, 1, 2),
 (90, 5800, 8, 3, 1, 2),
 (33, 6300, 1, 1, 2, 2),
-(47, 7200, 2, 2, 2, 2),
+(47, 7200, 2, 2, 1, 2),
 (100,8000,3, 1, 1, 3),
 (99, 8100, 4, 2, 1, 3),
 (120,7500,5, 3, 3, 3),
 (85, 9300, 6, 1, 2, 3),
-(76, 9550, 7, 2, 2, 3),
+(76, 9550, 7, 2, 1, 3),
 (12, 4600, 8, 1, 1, 4),
-(44, 7770, 1, 2, 2, 4),
+(44, 7770, 1, 2, 1, 4),
 (58, 8880, 2, 3, 1, 4),
 (66, 9200, 3, 1, 2, 4),
-(73, 8700, 4, 2, 3, 4),
+(73, 8700, 4, 2, 1, 4),
 (2,  4800, 5, 1, 1, 5),
 (3,  4900, 6, 2, 2, 5),
-(5,  6800, 7, 3, 3, 5),
+(5,  6800, 7, 3, 1, 5),
 (9,  9750, 8, 1, 1, 5),
-(1,  9900, 1, 2, 2, 5);
+(1,  9900, 1, 2, 3, 5);
+
 
 CREATE VIEW view_tickets_by_class_and_client AS
 SELECT
@@ -289,7 +279,6 @@ GROUP BY
     s.Serve_name,
     stat.ID_Stat;
 
--- Retrieve only reserved tickets for a specific client
 SELECT *
 FROM view_tickets_by_class_and_client
 WHERE client_id = 1 AND ticket_status = 'Забронирован';
@@ -387,13 +376,17 @@ GROUP BY
     s.Serve_name;
 
 
-select * from Stat;
+select * from Serve_stat;
+
+drop function if exists book_tickets;
 
 DELIMITER $$
 CREATE FUNCTION book_tickets(
     p_client_id INT,
     p_flight_id INT,
+    p_ticket_price INT,
     p_serve_stat_id INT,
+    p_ticket_status_id INT,
     p_ticket_count INT
 )
 RETURNS VARCHAR(100)
@@ -404,13 +397,15 @@ BEGIN
 
     WHILE i < p_ticket_count DO
         INSERT INTO Ticket (Number_place, Ticket_price, ClientID_client, Serve_statID_serve_stat, StatID_Stat, FlightID_flight)
-        VALUES (FLOOR(1 + RAND() * 700), 1000, p_client_id, p_serve_stat_id, 1, p_flight_id);
+        VALUES (FLOOR(1 + RAND() * 700), p_ticket_price, p_client_id, p_serve_stat_id, p_ticket_status_id, p_flight_id);
         SET i = i + 1;
     END WHILE;
 
     RETURN CONCAT(p_ticket_count, ' билетов успешно забронировано.');
 END $$
 DELIMITER ;
+
+select * from Client;
 
 DELIMITER $$
 CREATE FUNCTION add_flights(
@@ -436,20 +431,33 @@ BEGIN
 END $$
 DELIMITER ;
 
+
+drop procedure if exists GetPlanes;
+CREATE PROCEDURE GetPlanes(in airline_id int)
+BEGIN
+    SELECT
+        ID_plane AS id,
+        Model_plane AS name,
+        Capacity as capacity
+    FROM Plane where AirlineID_airline = airline_id;
+END;
+
+
+drop procedure if exists add_flights_procedure;
 DELIMITER $$
 CREATE PROCEDURE add_flights_procedure(
     IN p_airport_from INT,
     IN p_airport_dest INT,
     IN p_plane_id INT,
     IN p_departure_date DATE,
-    IN p_time_the_way TIME,
+    IN p_seats_availiable INT,
     IN p_flight_count INT
 )
 BEGIN
     DECLARE i INT DEFAULT 0;
     WHILE i < p_flight_count DO
         INSERT INTO Flight (AirportID_airport_from, AirportID_airport_dest, PlaneID_plane, Departure_date, Time_the_way, Seats_availiable)
-        VALUES (p_airport_from, p_airport_dest, p_plane_id, DATE_ADD(p_departure_date, INTERVAL i DAY), p_time_the_way, 200);
+        VALUES (p_airport_from, p_airport_dest, p_plane_id, DATE_ADD(p_departure_date, INTERVAL i DAY), 100000, p_seats_availiable);
 
         SET i = i + 1;
     END WHILE;
@@ -474,6 +482,8 @@ BEGIN
 END $$
 DELIMITER ;
 
+drop procedure if exists update_flight_procedure;
+
 DELIMITER $$
 CREATE PROCEDURE update_flight_procedure(
     IN p_flight_id INT,
@@ -481,7 +491,6 @@ CREATE PROCEDURE update_flight_procedure(
     IN p_airport_dest INT,
     IN p_plane_id INT,
     IN p_departure_date DATE,
-    IN p_time_the_way TIME,
     IN p_seats_available INT
 )
 BEGIN
@@ -492,7 +501,6 @@ BEGIN
             AirportID_airport_dest = p_airport_dest,
             PlaneID_plane = p_plane_id,
             Departure_date = p_departure_date,
-            Time_the_way = p_time_the_way,
             Seats_availiable = p_seats_available
         WHERE ID_flight = p_flight_id;
 
@@ -502,6 +510,15 @@ BEGIN
     END IF;
 END $$
 DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE GetAirports()
+BEGIN
+    SELECT ID_airport, Airport_name FROM Airport;
+END;
+
+DELIMITER //
 
 
 select * from Stat;
@@ -767,9 +784,227 @@ FROM view_airline_by_representative
 WHERE representative_id = 28;
 
 
+CREATE TABLE ClientSpending (
+    ClientID_client INT PRIMARY KEY,
+    TotalSpent DECIMAL(10, 2) DEFAULT 0
+);
+
+
+
+
+# ----------------
+
+-- Таблица DiscountQueue
+CREATE TABLE DiscountQueue (
+    ID_ticket INT PRIMARY KEY,
+    Discount_amount DECIMAL(10, 2),
+    Processed BOOLEAN DEFAULT FALSE
+);
+
+DELIMITER $$
+
+drop trigger if exists ApplyDiscount_AfterInsert;
+
+-- Триггер: добавление билета в DiscountQueue и обновление ClientSpending
+CREATE TRIGGER ApplyDiscount_AfterInsert
+AFTER INSERT ON Ticket
+FOR EACH ROW
+BEGIN
+    DECLARE total_spent DECIMAL(10, 2);
+
+    -- Обновляем общую сумму затрат клиента в ClientSpending
+    INSERT INTO ClientSpending (ClientID_client, TotalSpent)
+    VALUES (NEW.ClientID_client, NEW.Ticket_price)
+    ON DUPLICATE KEY UPDATE TotalSpent = TotalSpent + NEW.Ticket_price;
+
+    -- Считаем общую сумму затрат клиента
+    SELECT TotalSpent
+    INTO total_spent
+    FROM ClientSpending
+    WHERE ClientID_client = NEW.ClientID_client;
+
+    -- Если клиент потратил 50,000 рублей или больше
+    IF total_spent >= 50000 THEN
+        -- Добавляем билет в очередь на скидку
+        INSERT INTO DiscountQueue (ID_ticket, Discount_amount)
+        VALUES (NEW.ID_ticket, NEW.Ticket_price * 0.5);
+    END IF;
+END $$
+
+DELIMITER ;
+
+drop procedure if exists ProcessDiscountQueue;
+
+DELIMITER $$
+
+CREATE PROCEDURE `ProcessDiscountQueue`()
+BEGIN
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE ticket_id INT;
+    DECLARE discount_amt DECIMAL(10, 2);
+    DECLARE cur CURSOR FOR
+        SELECT ID_ticket, Discount_amount
+        FROM DiscountQueue
+        WHERE Processed = FALSE;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN cur;
+
+    discount_loop: LOOP
+        FETCH cur INTO ticket_id, discount_amt;
+
+        IF done THEN
+            LEAVE discount_loop;
+        END IF;
+
+        UPDATE Ticket
+        SET Ticket_price = discount_amt,
+            Discount_applied = TRUE
+        WHERE ID_ticket = ticket_id;
+
+        UPDATE DiscountQueue
+        SET Processed = TRUE
+        WHERE ID_ticket = ticket_id;
+    END LOOP;
+
+    CLOSE cur;
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+-- Событие: автоматическая обработка очереди скидок каждые 5 минут
+CREATE EVENT ProcessDiscountEvent
+ON SCHEDULE EVERY 5 MINUTE
+DO
+CALL ProcessDiscountQueue() $$
+
+DELIMITER ;
+
+
+drop view if exists AirlineFlightsWithCities;
+CREATE VIEW AirlineFlightsWithCities AS
+SELECT
+    Flight.ID_flight,
+    AirportFrom.Airport_name AS FromAirport,
+    CityFrom.City_name AS FromCity,
+    AirportTo.Airport_name AS ToAirport,
+    CityTo.City_name AS ToCity,
+    Flight.Departure_date,
+    Flight.Seats_availiable,
+    Plane.Model_plane,
+    Plane.ID_plane,
+    Plane.AirlineID_airline
+FROM Flight
+JOIN Airport AS AirportFrom ON Flight.AirportID_airport_from = AirportFrom.ID_airport
+JOIN City AS CityFrom ON AirportFrom.CityID_city = CityFrom.ID_city
+JOIN Airport AS AirportTo ON Flight.AirportID_airport_dest = AirportTo.ID_airport
+JOIN City AS CityTo ON AirportTo.CityID_city = CityTo.ID_city
+JOIN Plane ON Flight.PlaneID_plane = Plane.ID_plane;
+
+
+drop view if exists TicketCountStatistics;
+CREATE VIEW TicketCountStatistics AS
+SELECT
+    F.ID_flight AS FlightID,
+    F.Departure_date AS DepartureDate,
+    COUNT(T.ID_ticket) AS PurchasedTickets,
+    P.AirlineID_airline as airline_id
+FROM
+    Ticket T
+JOIN
+    Flight F ON T.FlightID_flight = F.ID_flight
+JOIN
+    Plane P ON F.PlaneID_plane = P.ID_plane
+WHERE
+    T.StatID_Stat = (SELECT ID_Stat FROM Stat WHERE Status_name = 'куплен') and P.AirlineID_airline = :airline_id
+GROUP BY
+    F.ID_flight, F.Departure_date;
+
+select * from TicketCountStatistics;
+
+
+CREATE VIEW RevenueStatisticsByClass AS
+SELECT
+    S.Serve_name AS ServiceClass,
+    SUM(T.Ticket_price) AS TotalRevenue,
+    MIN(F.Departure_date) AS StartDate,
+    MAX(F.Departure_date) AS EndDate,
+    P.AirlineID_airline AS airline_id
+FROM
+    Ticket T
+JOIN
+    Flight F ON T.FlightID_flight = F.ID_flight
+JOIN
+    Serve_stat S ON T.Serve_statID_serve_stat = S.ID_serve_stat
+JOIN
+    Plane P ON F.PlaneID_plane = P.ID_plane
+WHERE
+    T.StatID_Stat = (SELECT ID_Stat FROM Stat WHERE Status_name = 'куплен')
+    AND P.AirlineID_airline = :airline_id
+GROUP BY
+    S.Serve_name;
+
+select * from RevenueStatisticsByClass;
+
+
+DELIMITER $$
+
+CREATE TRIGGER after_ticket_insert
+AFTER INSERT ON Ticket
+FOR EACH ROW
+BEGIN
+    -- Обновляем количество мест в рейсе, связанном с добавленным билетом
+    UPDATE Flight
+    SET Seats_availiable = Seats_availiable - 1
+    WHERE ID_flight = NEW.FlightID_flight;
+
+    -- Проверяем, чтобы количество доступных мест не стало отрицательным
+    IF (SELECT Seats_availiable FROM Flight WHERE ID_flight = NEW.FlightID_flight) < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Ошибка: количество доступных мест не может быть отрицательным.';
+    END IF;
+END$$
+
+DELIMITER //;
+
+
+DELIMITER $$
+
+CREATE PROCEDURE CascadeDeleteFlight(flightId INT)
+BEGIN
+    DELETE FROM Ticket WHERE FlightID_flight = flightId;
+    DELETE FROM Flight WHERE ID_flight = flightId;
+END $$
+
+DELIMITER ;
+
+
+drop procedure if exists CascadeDeleteAirport;
+DELIMITER $$
+
+CREATE PROCEDURE CascadeDeleteAirport(airport_id INT)
+BEGIN
+    DELETE FROM Flight WHERE AirportID_airport_from = airport_id;
+    DELETE FROM Flight WHERE AirportID_airport_dest = airport_id;
+
+    DELETE FROM Airport WHERE ID_airport = airport_id;
+END $$
+
+DELIMITER ;
+
+
+select * from ClientSpending;
+
+select * from DiscountQueue;
+
 select * from Airport;
 
 select * from City;
+
+select * from Flight;
 
 select * from Client;
 

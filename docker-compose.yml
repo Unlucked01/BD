@@ -14,15 +14,15 @@ services:
     depends_on:
       - db
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    container_name: frontend
+#    ports:
+#      - "3000:80"
+#    depends_on:
+#      - backend
 
   db:
     image: mysql:8.0
@@ -34,7 +34,6 @@ services:
       - MYSQL_DATABASE=aviasales_db
     volumes:
       - db_data:/var/lib/mysql
-      - ./q_v2.sql:/docker-entrypoint-initdb.d/q_v2.sql
 
 volumes:
   db_data:

@@ -7,18 +7,19 @@ from pydantic import BaseModel
 class TicketBookingRequest(BaseModel):
     client_id: int
     flight_id: int
+    ticket_price: int
     serve_stat_id: int
-    ticket_status_id: int
     ticket_count: int
 
 
 class FlightRequest(BaseModel):
+    flight_id: int
     airport_from: int
     airport_dest: int
     plane_id: int
     departure_date: Date
-    time_the_way: Time
-    flight_count: int
+    seats_availiable: int
+    flight_count: Optional[int] = 1
 
 
 class UserLogin(BaseModel):
